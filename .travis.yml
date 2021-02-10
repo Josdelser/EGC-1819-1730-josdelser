@@ -1,0 +1,25 @@
+dist: xenial
+
+services:
+  - postgresql
+addons:
+  postgresql: "9.4"
+before_script:
+  - psql -U postgres -c "create user decide20 password 'decide20'"
+  - psql -U postgres -c "create database decide50 owner decide20"
+  - psql -U postgres -c "ALTER USER decide20 CREATEDB"
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+  - pip install codacy-coverage
+script:
+  - cd decide
+  - coverage run --branch --source=. ./manage.py test store --keepdb 
+  - coverage xml
+  - python-codacy-coverage -r coverage.xml
+
+branches:
+  only:
+    -master
