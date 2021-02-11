@@ -162,7 +162,7 @@ KEYBITS = 256
 ALLOWED_VERSIONS = ['v1', 'v2']
 DEFAULT_VERSION = 'v1'
 
-BASEURL = 'https://jose-examen-1730.herokuapp.com/'
+BASEURL = 'https://jose-examen-1730.herokuapp.com'
 APIS = {}
 
 try:
